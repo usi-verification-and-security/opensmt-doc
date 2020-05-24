@@ -31,29 +31,32 @@ arithmetic (QF\_LIA) based on branch-and-bound, and supports some
 aspects of bit-vector logic (QF\_BV).
 
 In comparison to 2019, the 2020 competition entry features a wide range
-of performance improvements in simplification, the Simplex
-algorithm~\cite{DutertreM:CAV06}, and the Egraph
-algorithm~\cite{DetlefsNS:JAC05}, several bug fixes related to solver
-soundness, and improved support for the logics.  In the process, the
-solver high-level architecture improved and low-level code cleaning
-resulted in fewer compiler warnings.
+of performance improvements especially in our implementation of the Simplex
+algorithm~\cite{DutertreM:CAV06}, and to lesser extent in simplification, and in the Egraph
+algorithm~\cite{DetlefsNS:JAC05}. 
+Additional improvement regards the performance of incremental solving.
+Finally, the support for producing model for satisfiable instances has been added for QF\_LRA.
+In the process, the
+solver high-level architecture improved, a few bugs related to solver
+soundness has been fixed, and low-level code cleaning
+resulted in elimination of standard compiler warnings.
 
+The most important optimization added in the last year is a decision heuristic in SAT solver for deciding the polarity of the chosen decision variable based on suggestion from the theory solver.
+Choosing polarity that is consistent with the current satisfying assignment of the theory solver yielded a huge performance improvement on QF\_LRA benchmarks and a small improvement on QF\_UF benchmarks.
+Other important optimizations in LRA theory solver include lazy tableau representation and a single backup assignment.
+
+\iffalse
+Incrementality
+- optimized CNF encoding of incremental problems to avoid redundant clauses in SAT solver
 \todo{Most changes in QF\_LRA.  Most significant change in QF\_UF was on
 implementing theory suggestions}
-
-The solver development process is better defined in comparison to the
-previous state.  The main public repository
- is now
-hosted in GitHub, where the commit process is integrated with Travis CI
-to ensure the passing of regression tests and different compilation.
-Commits are integrated to the master branch through pull requests once
-they pass a human review and the Travis CI configuration.
+\fi
 
 OpenSMT features not exercised in the competition include support for a
 wide range of interpolation algorithms for propositional
 logic~\cite{AltFHS:VSTTE2015}, linear real
 arithmetic~\cite{BlichaHKS19}, and uninterpreted
-functions~\cite{AltHAS:FMCAD17}; an experimental look\-ahead-based
+functions~\cite{AltHAS:FMCAD17} (now available also in the incremental mode); an experimental look\-ahead-based
 search algorithm~\cite{HyvarinenMSCS18} as an alternative to the more
 standard CDCL algorithm; and features that support search-space
 partitioning in particular designed for parallel
@@ -73,6 +76,7 @@ Martin Blicha (USI, Charles University),
 Roberto Bruttomesso (Cybersecurity / Nozomi Networks),
 Antti E. J. Hyv{\"a}rinen (USI),
 Matteo Marescotti (USI),
+Rodrigo Benedito Otoni (USI),
 Edgar Pek (University of Illinois, Urbana-Champaign),
 Simone Fulvio Rollini (United Technologies Research Center),
 Parvin Sadigova (King's College London), and
@@ -85,8 +89,8 @@ verification group at USI.
 
 OpenSMT is used in a range of projects as a back-end solver.  Recent
 examples include its use as an interpolation engine of the Sally model
-checker~\cite{JovanovicD:FMCAD16} which won the transition systems
-category in the constrained Horn clause competition 2019.  OpenSMT also
+checker~\cite{JovanovicD:FMCAD16} which won the first and the second place in the transition systems
+category in the constrained Horn clause competition 2019 and 2020, respectively.  OpenSMT also
 forms the basis of our own model checkers such as
 HiFrog~\cite{AltACMFHS17}.  OpenSMT is compatible with the SMTS
 parallelization framework~\cite{MarescottiHS18}.
