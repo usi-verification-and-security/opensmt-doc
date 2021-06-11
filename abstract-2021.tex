@@ -3,6 +3,13 @@
 \newcommand{\todo}[1]{$\langle\langle$#1 $\rangle\rangle$}
 \usepackage{hyperref}
 
+\newcommand{\qflra}{QF\_LRA}
+\newcommand{\qflia}{QF\_LIA}
+\newcommand{\qfuf}{QF\_UF}
+\newcommand{\qfbv}{QF\_BV}
+\newcommand{\qfrdl}{QF\_RDL}
+\newcommand{\qfidl}{QF\_IDL}
+
 \title{The OpenSMT Solver in SMT-COMP 2021 -- To Be Updated}
 \author{
 Martin Blicha \and 
@@ -25,42 +32,23 @@ OpenSMT~\cite{HyvarinenMAS16} is a T-DPLL based SMT
 solver~\cite{NieuwenhuisOT:JACM06} that has been developed at USI,
 Switzerland, since 2008.  The solver is written in {\tt C++} and
 currently supports the quantifier-free logics of equality with
-uninterpreted functions (QF\_UF), and linear real arithmetic (QF\_LRA).
-The solver has a rudimentary support for quantifier-free linear integer
-arithmetic (QF\_LIA) based on branch-and-bound, and supports some
-aspects of bit-vector logic (QF\_BV).
+uninterpreted functions (\qfuf), linear real and integer arithmetic (\qflra, \qflia), and real and integer difference logics (\qfrdl, \qfidl).
+OpenSMT also supports some aspects of bit-vector logic (\qfbv).
 
-In comparison to 2019, the 2020 competition entry features a wide range
-of performance improvements especially in our implementation of the Simplex
-algorithm~\cite{DutertreM:CAV06}, and to lesser extent in simplification, and in the Egraph
-algorithm~\cite{DetlefsNS:JAC05}. 
-Additional improvement regards the performance of incremental solving.
-Finally, the support for producing model for satisfiable instances has been added for QF\_LRA.
-In the process, the
-solver high-level architecture improved, a few bugs related to solver
-soundness has been fixed, and low-level code cleaning
-resulted in elimination of standard compiler warnings.
+In comparison to 2020, the 2021 competition entry features a dedicated difference logic solver based on Exhaustive Theory Propagation \cite{Nieuwenhuis_2005} (contributed by V{\'a}clav Lu{\v n}{\'a}k) and a support for producing models for all fully supported logics (\qfuf, \qflra, \qflia, \qfrdl, \qfidl).
+Additionally, the handling of ITE terms has been improved, resulting in a large performance benefit on \qflia{} benchmarks containing complex nested ITE terms.
 
-The most important optimization added in the last year is a decision heuristic in SAT solver for deciding the polarity of the chosen decision variable based on suggestion from the theory solver.
-Choosing polarity that is consistent with the current satisfying assignment of the theory solver yielded a huge performance improvement on QF\_LRA benchmarks and a small improvement on QF\_UF benchmarks.
-Other important optimizations in LRA theory solver include lazy tableau representation and a single backup assignment.
-
-\iffalse
-Incrementality
-- optimized CNF encoding of incremental problems to avoid redundant clauses in SAT solver
-\todo{Most changes in QF\_LRA.  Most significant change in QF\_UF was on
-implementing theory suggestions}
-\fi
 
 OpenSMT features not exercised in the competition include support for a
 wide range of interpolation algorithms for propositional
 logic~\cite{AltFHS:VSTTE2015}, linear real
 arithmetic~\cite{BlichaHKS19}, and uninterpreted
-functions~\cite{AltHAS:FMCAD17} (now available also in the incremental mode); an experimental look\-ahead-based
+functions~\cite{AltHAS:FMCAD17} (available also in the incremental mode); an experimental look\-ahead-based
 search algorithm~\cite{HyvarinenMSCS18} as an alternative to the more
 standard CDCL algorithm; and features that support search-space
 partitioning in particular designed for parallel
 solving~\cite{HyvarinenMS:SAT15}.
+OpenSMT is now also able to efficiently produce certificates of unsatisfiability~\cite{}\todo{\color{red}reference!\color{black}}, although this feature has not yet been merged to the main repository.
 
 \section{External Code and Contributors}
 
@@ -75,6 +63,7 @@ Sepideh Asadi (USI),
 Martin Blicha (USI, Charles University),
 Roberto Bruttomesso (Cybersecurity / Nozomi Networks),
 Antti E. J. Hyv{\"a}rinen (USI),
+V{\'a}clav Lu{\v n}{\'a}k (Charles University),
 Matteo Marescotti (USI),
 Rodrigo Benedito Otoni (USI),
 Edgar Pek (University of Illinois, Urbana-Champaign),
@@ -87,13 +76,12 @@ verification group at USI.
 
 \section{Utilization}
 
-OpenSMT is used in a range of projects as a back-end solver.  Recent
-examples include its use as an interpolation engine of the Sally model
-checker~\cite{JovanovicD:FMCAD16} which won the first and the second place in the transition systems
-category in the constrained Horn clause competition 2019 and 2020, respectively.  OpenSMT also
-forms the basis of our own model checkers such as
-HiFrog~\cite{AltACMFHS17}.  OpenSMT is compatible with the SMTS
-parallelization framework~\cite{MarescottiHS18}.
+OpenSMT is used in a range of projects as a back-end solver.  It has been used as an interpolation engine of the Sally model
+checker~\cite{JovanovicD:FMCAD16} which won the first and the second place in the transition systems category in the constrained Horn clause competition 2019 and 2020, respectively.
+Recently, is has been used as the basis for a new CHC solver Golem which won the second place in LRA-TS and LIA-Lin categories in CHC-COMP 2021.
+OpenSMT also forms the basis of our own model checkers such as
+HiFrog~\cite{AltACMFHS17} and UpProver~\cite{Asadi_2020b}.
+OpenSMT is compatible with the SMTS parallelization framework~\cite{MarescottiHS18}.
 
 \section{Availability}
 The source code repository and more information on the solver is
