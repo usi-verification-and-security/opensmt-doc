@@ -1,8 +1,8 @@
 all:
-	pdflatex abstract-2021
-	bibtex abstract-2021
-	pdflatex abstract-2021
-	pdflatex abstract-2021
+	pdflatex abstract-2022
+	bibtex abstract-2022
+	pdflatex abstract-2022
+	pdflatex abstract-2022
 
 clean:
 	rm -f *.{aux,bbl,log,out}
