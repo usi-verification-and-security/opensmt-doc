@@ -22,14 +22,14 @@
 
 \title{The OpenSMT Solver in SMT-COMP 2023}
 \author{
-Martin Blicha \and
-Konstantin I. Britikov \and
-Antti E. J. Hyv{\"a}rinen \and
-Rodrigo Otoni \and 
-Natasha Sharygina \\
+Martin Blicha\inst{1,3} \and
+Konstantin I. Britikov\inst{1} \and
+Antti E. J. Hyv{\"a}rinen\inst{2} \and
+Rodrigo Otoni\inst{1} \and 
+Natasha Sharygina\inst{1} \\
 }
 \institute{Universit{\`a} della Svizzera italiana (USI), Lugano,
-Switzerland}
+Switzerland \and Certora, Isreal \and Charles University, Prague, Czech Republic}
 \date{}
 \titlerunning{The OpenSMT Solver}
 \authorrunning{Blicha et al.}
@@ -47,9 +47,9 @@ uninterpreted functions (\qfuf), linear real and integer arithmetic
 It has a specialized solver for real and integer difference logics (\qfrdl,
 \qfidl). \opensmt also supports some aspects of bit-vector logic (\qfbv).
 
-In comparison to 2022, the 2023 competition entry features a 
-mixed theory of arrays, uninterpreted functions and linear integers and reals(\qfalia, \qfalra, \qfauflia, \qfauflra). Solver's performance has increased during the past year. 
-Interpolation, incremental solving and new heuristic were implemented in the lookahead engine of \opensmt.
+In comparison to 2022, the 2023 competition entry supports a combination of arrays with linear arithmetic and uninterpreted functions(\qfalia, \qfalra, \qfauflia, \qfauflra). 
+Additionally, the lookahead engine of \opensmt now supports interpolation and incremental solving.
+Performance of a lookahead engine has been improved with a new heuristic.
 
 \opensmt features not exercised in the competition include support for a
 wide range of interpolation algorithms for propositional
@@ -117,15 +117,13 @@ verification group at USI.
 
 \section{Utilization}
 
-\opensmt is used in a range of projects as a back-end solver.  It has
-been used as an interpolation engine of the Sally model
-checker~\cite{JovanovicD:FMCAD16} which won the first and the second
-place in the transition systems category in the constrained Horn clause
-competition 2019 and 2020, respectively.  Recently, is has been used as
-the basis for a new CHC solver Golem which won the first place in
- LIA-Lin and second place in LIA-Nonlin category in CHC-COMP 2023.  \opensmt also forms the
-basis of the model checkers HiFrog~\cite{AltACMFHS17} and
+\opensmt is used in a range of projects as a back-end solver.
+Most notably, it is a basis for a new CHC solver Golem which scored among the top solvers
+in LIA-Lin, LIA-Nonlin, and LRA-TS tracks in the last three editions of CHC-COMP~\cite{}
+\opensmt also forms the basis of the model checkers HiFrog~\cite{AltACMFHS17} and
 UpProver~\cite{Asadi_2020b}.
+It was also used as an interpolation engine of the Sally model
+checker~\cite{JovanovicD:FMCAD16}.
 
 \section{Availability}
 The source code repository and more information on the solver is
