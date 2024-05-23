@@ -57,8 +57,12 @@ It has a specialized solver for real and integer difference logics (\qfrdl,
 \qfidl).
 % \opensmt also supports some aspects of bit-vector logic (\qfbv).
 
-In comparison to 2023, the 2024 competition entry adds
-an experimental support for unsat cores.
+This year, we participate in all available tracks:
+single-query, incremental, model-validation, unsat-core, parallel and cloud.
+In model-validation track, we do not support logics with arrays.
+The support of unsat cores is currently only experimental.
+In comparison to the previous year,
+we added the support for unsat cores.
 We also re-established our participation in the parallel and cloud track
 (see below).
 
@@ -139,13 +143,19 @@ It was also used as an interpolation engine for the Sally model
 checker~\cite{JovanovicD:FMCAD16}.
 
 \section{Availability}
-The source code repository and more information on the solver is
+The source code repository and more information on the solver \opensmt is
 available at
 
 \begin{itemize}
     \item \url{https://github.com/usi-verification-and-security/opensmt}
-        and
     \item \url{https://verify.inf.usi.ch/opensmt}
+\end{itemize}
+
+The parallel and cloud version of \opensmt, SMTS, is available at
+
+\begin{itemize}
+    \item \url{https://github.com/usi-verification-and-security/SMTS/tree/cube-and-conquer}
+    \item \url{https://verify.inf.usi.ch/smts}
 \end{itemize}
 
 \iffalse
