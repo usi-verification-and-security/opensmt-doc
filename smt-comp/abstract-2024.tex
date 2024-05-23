@@ -75,7 +75,7 @@ particular designed for parallel solving~\cite{HyvarinenMS:SAT15}.
 unsatisfiability~\cite{OtoniBEHS:DAC21}, although this feature is not merged to the main repository.
 
 \section{Cloud and Parallel Solver}
-The parallel version of \opensmt, called SMTS, runs on our parallelization infrastructure described in~\cite{MarescottiHS18}.
+The parallel version of \opensmt, called \emph{SMTS}, runs on our parallelization infrastructure described in~\cite{MarescottiHS18}.
 The system is a client-server architecture that communicates with a custom protocol over TCP/IP.
 Parallel solving features include the complete implementation of the partition tree protocol with clause sharing.
 On a high level, the parallel solver partitions the instance dynamically on-demand and allows clauses to be shared between solvers working on different instances whenever this is allowed based on the information in the solvers.
@@ -95,7 +95,8 @@ the solvers are distributed over the instances on parameters such as whether the
 \end{figure}
 }
 
-We support also the cloud version of \opensmt, running the solver e.g. in the AWS infrastructure.
+SMTS supports also the cloud version of \opensmt,
+running the solver e.g. in the AWS infrastructure.
 
 \section{External Code and Contributors}
 
